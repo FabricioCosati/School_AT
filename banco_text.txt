@@ -1,0 +1,58 @@
+table addresses {
+  id INT [pk]
+  city text
+  state text
+  created_at timestamp
+  updated_at timestamp
+}
+
+table users {
+  id INT [pk]
+  addresses_id int [ref: > addresses.id]
+  name text
+  username text
+  cpf char
+  email text
+  phone text
+  is_admin boolean
+  created_at timestamp
+  updated_at timestamp
+}
+
+table instructors {
+  id INT [pk]
+  users_id INT [ref: > users.id]
+  certificates text
+  hour_value float
+  created_at timestamp
+  updated_at timestamp
+}
+
+table students  {
+  id INT [pk]
+  users_id INT [ref: > users.id]
+  registration text
+  created_at timestamp
+  updated_at timestamp
+}
+
+table students_has_courses {
+  id INT [pk]
+  courses_id INT [ref: > courses.id]
+  students_id INT [ref: > students.id]
+  created_at timestamp
+  updated_at timestamp
+  
+}
+
+table courses {
+  id INT [pk]
+  instructors_id INT [ref: > instructors.id]
+  name text
+  description text
+  duration text
+  price float
+  availability boolean
+  created_at timestamp
+  updated_at timestamp
+}
